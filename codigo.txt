@@ -1,0 +1,72 @@
+/*function guardarNotas() {
+    // Recuperar datos del formulario
+    const nombreAlumno = document.getElementById("nombreAlumno").value;
+    const nombreMaestro = document.getElementById("nombreMaestro").value;
+    const Bradio = document.getElementsByName('Clase');
+    let claseSeleccionada = '';
+    for(let i=0; i< Bradio.length; i++){
+        if(Bradio[i].checked){
+            claseSeleccionada = Bradio[i].value;
+        }
+    }
+    const nota1 = parseFloat(document.getElementById("nota1").value);
+    const nota2 = parseFloat(document.getElementById("nota2").value);
+    const nota3 = parseFloat(document.getElementById("nota3").value);
+
+    // Calcular promedio
+    const promedio = (nota1 + nota2 + nota3) / 3;
+
+    // Determinar observación
+    let observacion = "Reprobado";
+    if (promedio >= 70) {
+        observacion = "Aprobado";
+    }
+
+    // Agregar nota al arreglo de notas
+    notas.push({
+        alumno: nombreAlumno,
+        maestro: nombreMaestro,
+        clase: claseSeleccionada,
+        Nota1: nota1,
+        Nota2: nota2,
+        Nota3: nota3,
+        Promedio: promedio,
+        Observacion: observacion
+    });
+
+    // Limpiar campos del formulario
+    document.getElementById("codigoAlumno").value = "";
+    document.getElementById("codigoMaestro").value = "";
+    document.getElementById("nombreAlumno").value = "";
+    document.getElementById("nombreMaestro").value = "";
+    document.getElementById("apellidoAlumno").value = "";
+    document.getElementById("apellidoMaestro").value = "";
+    // Desmarcar radios
+    let Bradios = document.getElementsByName('Clase');
+    for(let i=0; i< Bradios.length; i++){
+        Bradios[i].checked = false;
+    }
+    document.getElementById('clasenueva').value="";
+    document.getElementById("nota1").value = "";
+    document.getElementById("nota2").value = "";
+    document.getElementById("nota3").value = "";
+    console.log(notas);
+    // Construir fila de la tabla
+    //esta son filas que pertenecen a la tabla general donde se almacenan los datos
+    //tambien se puede ver desde la consola
+    const fila = document.createElement("tr");
+    fila.innerHTML = `
+    <td>${nombreAlumno}</td>
+    <td>${nombreMaestro}</td>
+    <td>${claseSeleccionada}</td>
+    <td>${nota1}</td>
+    <td>${nota2}</td>
+    <td>${nota3}</td>
+    <td>${promedio}</td>
+    <td>${observacion}</td>
+    `;
+
+    // Agregar fila de js a la tabla en el html
+    const tabla = document.querySelector("table tbody");
+    tabla.appendChild(fila);
+}*/

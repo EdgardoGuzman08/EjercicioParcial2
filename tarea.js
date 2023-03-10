@@ -1,5 +1,5 @@
 let datoNuevo = document.getElementById('datoNuevo');
-
+//ARREGLOS
 let alumno=[{
     codigo:"1",
     nombre:"Pedro",
@@ -44,7 +44,7 @@ let notas=[
 
 let cClases=document.getElementById('cuadroClases');
 
-
+//Radio para materias
 for (let i=0; i<clase.length; i++){
 
     let elemento = document.createElement('input');
@@ -60,7 +60,7 @@ for (let i=0; i<clase.length; i++){
 
 }
 
-
+//Buscar esa materia por su valor
 function Buscar(){
     let Bradio = document.getElementsByName('Clase');
     console.log(Bradio);
@@ -71,6 +71,7 @@ function Buscar(){
     }
 }
 
+//agregar clase
 function agregarClase() {
     let fldsmdfr = document.getElementById('clasenueva').value;
     if (clase.includes(fldsmdfr)) {
@@ -88,7 +89,13 @@ function agregarClase() {
     nuevoRadio.value=`${String(fldsmdfr)}`;
     cClases.append(nuevoRadio, nuevaEtiqueta);
 }
+/* 
+Comienzo de la tarea 
+Seminario de Software
+Inciso 1 Guardar y Buscar maestro y alumno
+*/
 
+//guardar Alumno 
 function guardarAlumno() {
     let codigo = document.getElementById('codigoAlumno').value;
     let nombre = document.getElementById('nombreAlumno').value;
@@ -117,7 +124,7 @@ function guardarAlumno() {
         console.log(alumno);
     }
 }
-
+//Buscar Alumno
 function buscarAlumno() {
     let codigo = document.getElementById("codigoAlumno").value;
     for (let i = 0; i < alumno.length; i++) {
@@ -130,6 +137,7 @@ function buscarAlumno() {
     alert("El alumno con codigo " + codigo + " no existe.");
 }
 
+//guardar Maestro
 function guardarMaestro() {
     let codigo = document.getElementById('codigoMaestro').value;
     let nombre = document.getElementById('nombreMaestro').value;
@@ -158,7 +166,7 @@ function guardarMaestro() {
         console.log(maestro);
     }
 }
-
+// buscar Maestro
 function buscarMaestro() {
     let codigo = document.getElementById("codigoMaestro").value;
     for (let i = 0; i < maestro.length; i++) {
@@ -174,11 +182,29 @@ function buscarMaestro() {
     console.log(maestro);
 }
 
-//guardar notas 
+/* 
+Ejercicio #2 
+Guardar notas en el arreglo notas
+*/
+
+//funcion que nos ayuda a calcular el promedio
+function calcularPromedio(nota1, nota2, nota3) {
+    const promedio = (nota1 + nota2 + nota3) / 3;
+    let observacion = "Reprobado";
+    if (promedio >= 70) {
+        observacion = "Aprobado";
+    }
+    return { promedio, observacion };
+}
+
+
+//guardar notas en el arreglo notas
 function guardarNotas() {
     // Recuperar datos del formulario
     const nombreAlumno = document.getElementById("nombreAlumno").value;
+    const apellidoAlumno = document.getElementById("apellidoAlumno").value;
     const nombreMaestro = document.getElementById("nombreMaestro").value;
+    const apellidoMaestro = document.getElementById("apellidoMaestro").value;
     const Bradio = document.getElementsByName('Clase');
     let claseSeleccionada = '';
     for(let i=0; i< Bradio.length; i++){
@@ -190,19 +216,13 @@ function guardarNotas() {
     const nota2 = parseFloat(document.getElementById("nota2").value);
     const nota3 = parseFloat(document.getElementById("nota3").value);
 
-    // Calcular promedio
-    const promedio = (nota1 + nota2 + nota3) / 3;
-
-    // Determinar observación
-    let observacion = "Reprobado";
-    if (promedio >= 70) {
-        observacion = "Aprobado";
-    }
+    // Calcular promedio y observación
+    const { promedio, observacion } = calcularPromedio(nota1, nota2, nota3);
 
     // Agregar nota al arreglo de notas
     notas.push({
-        alumno: nombreAlumno,
-        maestro: nombreMaestro,
+        alumno: nombreAlumno + ' ' + apellidoAlumno,
+        maestro: nombreMaestro + ' ' + apellidoMaestro,
         clase: claseSeleccionada,
         Nota1: nota1,
         Nota2: nota2,
@@ -229,10 +249,12 @@ function guardarNotas() {
     document.getElementById("nota3").value = "";
     console.log(notas);
     // Construir fila de la tabla
+    //esta son filas que pertenecen a la tabla general donde se almacenan los datos
+    //tambien se puede ver desde la consola
     const fila = document.createElement("tr");
     fila.innerHTML = `
-    <td>${nombreAlumno}</td>
-    <td>${nombreMaestro}</td>
+    <td>${nombreAlumno} ${apellidoAlumno}</td>
+    <td>${nombreMaestro} ${apellidoMaestro}</td>
     <td>${claseSeleccionada}</td>
     <td>${nota1}</td>
     <td>${nota2}</td>
@@ -241,13 +263,21 @@ function guardarNotas() {
     <td>${observacion}</td>
     `;
 
-    // Agregar fila a la tabla
+    // Agregar fila de js a la tabla en el html
     const tabla = document.querySelector("table tbody");
     tabla.appendChild(fila);
 }
 
 
+/*
+    Ejercicio 3 4 y 5
+realizar reportes por cada una de las acciones
+1. notas por clase
+2- notas por alumno
+3. notas por maestro
+*/
 
+//notas por clases
 function generarReporteNotasPorClase() {
         // obtener la clase seleccionada por el usuario
         let claseSeleccionada = document.querySelector('input[name="Clase"]:checked');
@@ -278,8 +308,8 @@ function generarReporteNotasPorClase() {
         let celdaPromedio = document.createElement('td');
         let celdaObservacion = document.createElement('td');
     
-        celdaAlumno.textContent = registro.alumno.nombre;
-        celdaMaestro.textContent = registro.maestro.nombre;
+        celdaAlumno.textContent = registro.alumno;
+        celdaMaestro.textContent = registro.maestro;
         celdaClase.textContent = registro.clase;
         celdaNota1.textContent = registro.Nota1;
         celdaNota2.textContent = registro.Nota2;
@@ -303,3 +333,86 @@ function generarReporteNotasPorClase() {
         tabla.appendChild(fila);
         }
 }
+
+//notas por alumno
+// Función para generar el reporte de 2 notas por alumno
+function generarReporteNotasPorAlumno() {
+    let notasPorAlumno = [];
+    
+        // Recorre el arreglo de notas y agrupa las notas por alumno
+        for (let i = 0; i < notas.length; i++) {
+        let nota = notas[i];
+    
+        // Busca si ya existe el alumno en el arreglo notasPorAlumno
+        let alumnoIndex = notasPorAlumno.findIndex((element) => element.alumno === nota.alumno);
+    
+        if (alumnoIndex !== -1) {
+            // Si ya existe el alumno, agrega la nota al arreglo de notas de ese alumno
+            notasPorAlumno[alumnoIndex].notas.push(nota);
+        } else {
+            // Si no existe el alumno, crea un nuevo objeto con su información y agrega la primera nota
+            notasPorAlumno.push({
+            alumno: nota.alumno,
+            maestro: nota.maestro,
+            notas: [nota]
+            });
+        }
+        }
+    
+        // Ordena el arreglo notasPorAlumno alfabéticamente por el nombre del alumno
+        notasPorAlumno.sort((a, b) => {
+        let nombreA = a.alumno.nombre;
+        let nombreB = b.alumno.nombre;
+    
+        if (nombreA < nombreB) {
+            return -1;
+        }
+        if (nombreA > nombreB) {
+            return 1;
+        }
+        return 0;
+        });
+    
+        // Crea la tabla con el reporte de notas por alumno
+        let tabla = document.querySelector('.reportes-table tbody');
+        tabla.innerHTML = '';
+    
+        for (let i = 0; i < notasPorAlumno.length; i++) {
+        let alumno = notasPorAlumno[i].alumno;
+        let maestro = notasPorAlumno[i].maestro;
+        let notas = notasPorAlumno[i].notas;
+    
+        let fila = document.createElement('tr');
+        let celdaAlumno = document.createElement('td');
+        let celdaMaestro = document.createElement('td');
+        let celdaClase = document.createElement('td');
+        let celdaNota1 = document.createElement('td');
+        let celdaNota2 = document.createElement('td');
+        let celdaNota3 = document.createElement('td');
+        let celdaPromedio = document.createElement('td');
+        let celdaObservacion = document.createElement('td');
+    
+        celdaAlumno.textContent = `${alumno.nombre} ${alumno.apellido}`;
+        celdaMaestro.textContent = `${maestro.nombre} ${maestro.apellido}`;
+        celdaClase.textContent = notas[0].clase;
+        celdaNota1.textContent = notas[0].Nota1;
+        celdaNota2.textContent = notas[0].Nota2;
+        celdaNota3.textContent = notas[0].Nota3;
+        celdaPromedio.textContent = calcularPromedio(notas);
+        celdaObservacion.textContent = obtenerObservacion(calcularPromedio(notas));
+    
+        fila.appendChild(celdaAlumno);
+        fila.appendChild(celdaMaestro);
+        fila.appendChild(celdaClase);
+        fila.appendChild(celdaNota1);
+        fila.appendChild(celdaNota2);
+        fila.appendChild(celdaNota3);
+        fila.appendChild(celdaPromedio);
+        fila.appendChild(celdaObservacion);
+    
+        tabla.appendChild(fila);
+    }
+}
+
+
+//notas por maestro
