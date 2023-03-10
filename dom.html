@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="datoNuevo"></div>
+    <form action="">
+        <label for="">Codigo Alumno</label>
+        <input type="text" name="" id="codigoAlumno">
+        <label for="">Nombre</label>
+        <input type="text" name="" id="nombreAlumno">
+        <label for="">Apellido</label>
+        <input type="text" name="" id="apellidoAlumno">
+        <button type="button" onclick="guardarAlumno()">Guardar</button>
+        <button type="button" onclick="buscarAlumno()">Buscar</button>
+    <hr>
+        <label for="">Codigo Maestro</label>
+        <input type="text" name="" id="codigoMaestro">
+        <label for="">Nombre Maestro</label>
+        <input type="text" id="nombreMaestro">
+        <label for="">Apellido Maestro</label>
+        <input type="text" id="apellidoMaestro">
+        <button type="button" onclick="guardarMaestro()">Guardar</button>
+        <button type="button" onclick="buscarMaestro()">Buscar</button>
+    <hr>
+    <div id="cuadroClases" class="materias"></div>
+    <button type="button" onclick="Buscar()">Buscar</button>
+    <hr>
+        <label for="">Nota 1</label>
+        <input type="text" name="" id="nota1">
+        <label for="">Nota 2</label>
+        <input type="text" id="nota2">
+        <label for="">Nota 3</label>
+        <input type="text" id="nota3">
+        <button type="button" onclick="guardarNotas()">Guardar</button>
+    <hr>
+        <label for="">Clase</label>
+        <input type="text" id="clasenueva">
+        <button type="button" onclick="agregarClase()">Agregar Clase</button>
+    <hr>
+        <button type="button" onclick="generarReporteNotasPorClase()">Reporte 1 Nota por Clase</button>
+        <br>
+        
+        <button type="button" onclick="generarReporteNotasPorAlumno()">Reporte 2 Nota por Alumno</button>
+        <br>
+        <button type="button" onclick="generarReporteNotasPorMaestro()">Reporte 3 Nota por Maestro</button>
+    <hr>
+
+        <table class="notas-table">
+            <caption>Notas Guardas General</caption>
+        <thead>
+            <tr>
+            <th>Alumno</th>
+            <th>Maestro</th>
+            <th>Clase</th>
+            <th>Nota 1</th>
+            <th>Nota 2</th>
+            <th>Nota 3</th>
+            <th>Promedio</th>
+            <th>Observación</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- aquí se agregarán las filas dinámicamente con JavaScript -->
+        </tbody>
+        </table>
+        <hr>
+        <table class="reportes-table">
+            <caption>Reportes</caption>
+            <thead>
+                <tr>
+                <th>Alumno</th>
+                <th>Maestro</th>
+                <th>Clase</th>
+                <th>Nota 1</th>
+                <th>Nota 2</th>
+                <th>Nota 3</th>
+                <th>Promedio</th>
+                <th>Observación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- aquí se agregarán las filas dinámicamente con JavaScript -->
+            </tbody>
+            </table>
+</form>
+
+    
+    <script src="/EjercicioParcial2/tarea.js"></script>
+</body>
+</html>
