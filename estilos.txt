@@ -141,3 +141,25 @@ label {
         .reportes-table tr:hover {
         background-color: #fcceff;
         }
+
+        .notas-table {
+            float: left;
+            clear: both;
+            margin-right: 20px;
+        }
+        
+        .reportes-table {
+            float: right;
+            clear: both;
+            margin-left: 20px;
+        }
+        .notas-table {
+            float: left;
+            margin-right: 20px;
+          }
+          
+          .reportes-table {
+            float: right;
+            margin-left: 20px;
+          }
+          

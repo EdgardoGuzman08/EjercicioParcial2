@@ -4,21 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="styles.css">
     <title>Document</title>
 </head>
 <body>
     <div id="datoNuevo"></div>
     <form action="">
-        <label for="">Codigo Alumno</label>
-        <input type="text" name="" id="codigoAlumno">
-        <label for="">Nombre</label>
-        <input type="text" name="" id="nombreAlumno">
-        <label for="">Apellido</label>
-        <input type="text" name="" id="apellidoAlumno">
-        <button type="button" onclick="guardarAlumno()">Guardar</button>
-        <button type="button" onclick="buscarAlumno()">Buscar</button>
+        <!--inicio de form alumno-->
+        <div class="alumno">
+            <label for="">Codigo Alumno</label>
+            <input type="text" name="" id="codigoAlumno">
+            <label for="">Nombre</label>
+            <input type="text" name="" id="nombreAlumno">
+            <label for="">Apellido</label>
+            <input type="text" name="" id="apellidoAlumno">
+            <button type="button" onclick="guardarAlumno()">Guardar</button>
+            <button type="button" onclick="buscarAlumno()">Buscar</button>
+            <button type="reset" class="limpiar" onclick="limpiarCampos()">Limpiar Campos</button>
+        </div>
+        <!--fin de form alumno-->
     <hr>
+    <!--inicio de form maestro-->
+    <div class="maestro">
         <label for="">Codigo Maestro</label>
         <input type="text" name="" id="codigoMaestro">
         <label for="">Nombre Maestro</label>
@@ -27,53 +34,78 @@
         <input type="text" id="apellidoMaestro">
         <button type="button" onclick="guardarMaestro()">Guardar</button>
         <button type="button" onclick="buscarMaestro()">Buscar</button>
+        <button type="reset" class="limpiar" onclick="limpiarCampos()">Limpiar Campos</button>
+    </div>
+    <!--fin de form maestro-->
     <hr>
-    <button type="reset" class="limpiar" onclick="limpiarCampos()">Limpiar Campos</button>
+    <!--inicio de div que contiene todo de clases-->
+    <div class="cuadroparaclases">
+        <!--inicio de radio de materias-->
+        <div id="cuadroClases" class="materias"></div>
+        <!--fin de radio de materias-->
+        <!--inicio de div para buscar clase-->
+        <div class="parabuscarclase">
+            <button type="button" onclick="Buscar()">Buscar Clase</button>
+        </div>
+        <!--fin de div para buscar clase-->
+        <br><br>
+        <!--inicio para agregar clase-->
+        <div class="agregarmasclases">
+            <input type="text" id="clasenueva" placeholder="Agregar Clase">
+        </div>
+        <div class="btnparaagregarclases">
+            <button type="button" onclick="agregarClase()">Agregar Clase</button>
+        </div>
+        <!--fin para agregar clase-->
+        <hr>
+        <!--inicio de notas generales de los alumnos-->
+        <div class="notasgenerales">
+            <input type="text" id="nota1" placeholder="Nota 1">
+            <input type="text" id="nota2" placeholder="Nota 2">
+            <input type="text" id="nota3" placeholder="Nota 3">
+        </div>
+        <!--fin de notas generales de los alumnos-->
+        <!--inicio de div para guardar notas-->
+        <div class="btnparaguardarnotas">
+            <button type="button" onclick="guardarNotas()">Guardar Notas</button>
+        </div>
+        <!--fin de div para guardar notas-->
+    </div>
+    <!--fin de div que contiene todo de clases-->
     <hr>
-    <div id="cuadroClases" class="materias"></div>
-    <button type="button" onclick="Buscar()">Buscar</button>
+    <!--inicio de div contenedor de botones de reportes-->
+        <div class="btnReportes">
+            <button type="button" onclick="generarReporteNotasPorClase()">Reporte 1 Nota por Clase</button>
+            <button type="button" onclick="generarReporteNotasPorAlumno()">Reporte 2 Nota por Alumno</button>
+            <button type="button" onclick="generarReporteNotasPorMaestro()">Reporte 3 Nota por Maestro</button>
+        </div>
+    <!--fin de div contenedor de botones de reportes-->
     <hr>
-        <label for="">Nota 1</label>
-        <input type="text" name="" id="nota1">
-        <label for="">Nota 2</label>
-        <input type="text" id="nota2">
-        <label for="">Nota 3</label>
-        <input type="text" id="nota3">
-        <button type="button" onclick="guardarNotas()">Guardar</button>
-    <hr>
-        <label for="">Clase</label>
-        <input type="text" id="clasenueva">
-        <button type="button" onclick="agregarClase()">Agregar Clase</button>
-    <hr>
-        <button type="button" onclick="generarReporteNotasPorClase()">Reporte 1 Nota por Clase</button>
-        <br>
-
-        <button type="button" onclick="generarReporteNotasPorAlumno()">Reporte 2 Nota por Alumno</button>
-        <br>
-
-        <button type="button" onclick="generarReporteNotasPorMaestro()">Reporte 3 Nota por Maestro</button>
-    <hr>
-    <table class="notas-table">
-        <caption>Todas las Notas Guardas</caption>
-    <thead>
-        <tr>
-        <th>Alumno</th>
-        <th>Maestro</th>
-        <th>Clase</th>
-        <th>Nota 1</th>
-        <th>Nota 2</th>
-        <th>Nota 3</th>
-        <th>Promedio</th>
-        <th>Observación</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- aquí se agregarán las filas con JavaScript -->
-    </tbody>
-    </table>
+    <!--inicio de tabla general de todas las notas sin filtro-->
+        <table class="notas-table">
+            <caption>Todas las Notas Guardas</caption>
+        <thead>
+            <tr>
+            <th>Alumno</th>
+            <th>Maestro</th>
+            <th>Clase</th>
+            <th>Nota 1</th>
+            <th>Nota 2</th>
+            <th>Nota 3</th>
+            <th>Promedio</th>
+            <th>Observación</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- aquí se agregarán las filas con JavaScript -->
+        </tbody>
+        </table>
+    <!--fin de tabla general de todas las notas sin filtro-->
     <hr>
 </form>
+
 <br><br><br>
+<!--inicio de tabla que muestra la info de los 3 reportes-->
 <table id="reportesTable" class="reportes-table">
     <caption>Reporte de Notas</caption>
     <thead>
@@ -92,8 +124,7 @@
         <!-- aquí se agregarán las filas con JavaScript -->
     </tbody>
     </table>
-
-    
+<!--fin de tabla que muestra la informacion de los 3 reportes-->
     <script src="/tarea.js"></script>
 </body>
 </html>
