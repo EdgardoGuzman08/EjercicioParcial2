@@ -335,84 +335,106 @@ function generarReporteNotasPorClase() {
 }
 
 //notas por alumno
-// Función para generar el reporte de 2 notas por alumno
-function generarReporteNotasPorAlumno() {
-    let notasPorAlumno = [];
+/*function generarReporteNotasPorAlumno() {
+    // Obtener el nombre completo del alumno ingresado
+    let nombreAlumno = document.getElementById('nombreAlumno').value + ' ' + document.getElementById('apellidoAlumno').value;
+
+    // Buscar todas las notas asociadas al nombre completo del alumno
+    let notasAlumno = notas.filter(notas => notas.alumno === nombreAlumno);
+
     
-        // Recorre el arreglo de notas y agrupa las notas por alumno
-        for (let i = 0; i < notas.length; i++) {
-        let nota = notas[i];
-    
-        // Busca si ya existe el alumno en el arreglo notasPorAlumno
-        let alumnoIndex = notasPorAlumno.findIndex((element) => element.alumno === nota.alumno);
-    
-        if (alumnoIndex !== -1) {
-            // Si ya existe el alumno, agrega la nota al arreglo de notas de ese alumno
-            notasPorAlumno[alumnoIndex].notas.push(nota);
-        } else {
-            // Si no existe el alumno, crea un nuevo objeto con su información y agrega la primera nota
-            notasPorAlumno.push({
-            alumno: nota.alumno,
-            maestro: nota.maestro,
-            notas: [nota]
-            });
-        }
-        }
-    
-        // Ordena el arreglo notasPorAlumno alfabéticamente por el nombre del alumno
-        notasPorAlumno.sort((a, b) => {
-        let nombreA = a.alumno.nombre;
-        let nombreB = b.alumno.nombre;
-    
-        if (nombreA < nombreB) {
-            return -1;
-        }
-        if (nombreA > nombreB) {
-            return 1;
-        }
-        return 0;
-        });
-    
-        // Crea la tabla con el reporte de notas por alumno
-        let tabla = document.querySelector('.reportes-table tbody');
-        tabla.innerHTML = '';
-    
-        for (let i = 0; i < notasPorAlumno.length; i++) {
-        let alumno = notasPorAlumno[i].alumno;
-        let maestro = notasPorAlumno[i].maestro;
-        let notas = notasPorAlumno[i].notas;
-    
-        let fila = document.createElement('tr');
-        let celdaAlumno = document.createElement('td');
-        let celdaMaestro = document.createElement('td');
-        let celdaClase = document.createElement('td');
-        let celdaNota1 = document.createElement('td');
-        let celdaNota2 = document.createElement('td');
-        let celdaNota3 = document.createElement('td');
-        let celdaPromedio = document.createElement('td');
-        let celdaObservacion = document.createElement('td');
-    
-        celdaAlumno.textContent = `${alumno.nombre} ${alumno.apellido}`;
-        celdaMaestro.textContent = `${maestro.nombre} ${maestro.apellido}`;
-        celdaClase.textContent = notas[0].clase;
-        celdaNota1.textContent = notas[0].Nota1;
-        celdaNota2.textContent = notas[0].Nota2;
-        celdaNota3.textContent = notas[0].Nota3;
-        celdaPromedio.textContent = calcularPromedio(notas);
-        celdaObservacion.textContent = obtenerObservacion(calcularPromedio(notas));
-    
-        fila.appendChild(celdaAlumno);
-        fila.appendChild(celdaMaestro);
-        fila.appendChild(celdaClase);
-        fila.appendChild(celdaNota1);
-        fila.appendChild(celdaNota2);
-        fila.appendChild(celdaNota3);
-        fila.appendChild(celdaPromedio);
-        fila.appendChild(celdaObservacion);
-    
-        tabla.appendChild(fila);
+    // Si no hay notas para ese alumno, mostrar mensaje de error y salir de la función
+    if (notasAlumno.length === 0) {
+        alert('No se encontraron notas para ese alumno.');
+        return;
     }
+    
+    // Generar informe con las notas para cada clase y el promedio
+    let informe = '';
+    for (let i = 0; i < notasAlumno.length; i++) {
+        informe += `Clase: ${notasAlumno[i].clase}\n`;
+        informe += `Nota 1: ${notasAlumno[i].Nota1}\n`;
+        informe += `Nota 2: ${notasAlumno[i].Nota2}\n`;
+        informe += `Promedio: ${notasAlumno[i].Promedio}\n\n`;
+    }
+    
+    // Mostrar informe en una ventana emergente
+    alert(informe);
+}*/
+
+function generarReporteNotasPorAlumno() {
+    // Obtener el nombre completo del alumno ingresado
+    let nombreAlumno = document.getElementById('nombreAlumno').value + ' ' + document.getElementById('apellidoAlumno').value;
+
+    // Buscar todas las notas asociadas al nombre completo del alumno
+    let notasAlumno = notas.filter(notas => notas.alumno === nombreAlumno);
+
+    // Si no hay notas para ese alumno, mostrar mensaje de error y salir de la función
+    if (notasAlumno.length === 0) {
+        alert('No se encontraron notas para ese alumno.');
+        return;
+    }
+
+    // Obtener una referencia al elemento tbody de la tabla
+    let tbody = document.getElementById('reportesTable').getElementsByTagName('tbody')[0];
+
+    // Crear un string HTML para cada fila de la tabla y agregarlo al tbody
+    let html = '';
+    for (let i = 0; i < notasAlumno.length; i++) {
+        let observacion = notasAlumno[i].Promedio >= 70 ? 'Aprobado' : 'Reprobado';
+        html += `<tr>
+                    <td>${notasAlumno[i].alumno}</td>
+                    <td>${notasAlumno[i].maestro}</td>
+                    <td>${notasAlumno[i].clase}</td>
+                    <td>${notasAlumno[i].Nota1}</td>
+                    <td>${notasAlumno[i].Nota2}</td>
+                    <td>${notasAlumno[i].Nota3}</td>
+                    <td>${notasAlumno[i].Promedio}</td>
+                    <td>${observacion}</td>
+                </tr>`;
+    }
+    document.getElementById("codigoAlumno").value = "";
+    document.getElementById("nombreAlumno").value = "";
+    document.getElementById("apellidoAlumno").value = "";
+    tbody.innerHTML = html;
 }
 
 
 //notas por maestro
+function generarReporteNotasPorMaestro() {
+    // Obtener el nombre completo del alumno ingresado
+    let nombreMaestro = document.getElementById('nombreMaestro').value + ' ' + document.getElementById('apellidoMaestro').value;
+
+    // Buscar todas las notas asociadas al nombre completo del alumno
+    let notasMaestro = notas.filter(notas => notas.maestro === nombreMaestro);
+
+    // Si no hay notas para ese alumno, mostrar mensaje de error y salir de la función
+    if (notasMaestro.length === 0) {
+        alert('No se encontraron notas para ese alumno.');
+        return;
+    }
+
+    // Obtener una referencia al elemento tbody de la tabla
+    let tbody = document.getElementById('reportesTable').getElementsByTagName('tbody')[0];
+
+    // Crear un string HTML para cada fila de la tabla y agregarlo al tbody
+    let html = '';
+    for (let i = 0; i < notasMaestro.length; i++) {
+        let observacion = notasMaestro[i].Promedio < 70 ? 'Reprobado' : 'Aprobado';
+        html += `<tr>
+                    <td></td>
+                    <td>${notasMaestro[i].maestro}</td>
+                    <td>${notasMaestro[i].clase}</td>
+                    <td>${notasMaestro[i].Nota1}</td>
+                    <td>${notasMaestro[i].Nota2}</td>
+                    <td>${notasMaestro[i].Nota3}</td>
+                    <td>${notasMaestro[i].Promedio}</td>
+                    <td>${observacion}</td>
+                </tr>`;
+    }
+    
+    document.getElementById("codigoMaestro").value = "";
+    document.getElementById("nombreMaestro").value = "";
+    document.getElementById("apellidoMaestro").value = "";
+    tbody.innerHTML = html;
+}
