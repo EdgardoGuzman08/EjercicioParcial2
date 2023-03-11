@@ -3,6 +3,38 @@ body {
   color: #fff;
 }
 
+nav {
+  background-color: #171717;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+nav li {
+  margin: 0;
+  padding: 0;
+}
+
+nav button {
+  color: #fff;
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 10px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+nav button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+
 form {
   max-width: 800px;
   margin: 0 auto;

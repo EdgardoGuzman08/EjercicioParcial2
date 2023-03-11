@@ -1,3 +1,30 @@
+function mostrarAlumno() {
+    document.querySelector(".alumno").style.display = "block";
+    document.querySelector(".maestro").style.display = "none";
+    document.querySelector(".cuadroparaclases").style.display = "none";
+    document.querySelector(".btnReportes").style.display = "block";
+    document.querySelector(".notas-table").style.display = "block";
+    document.querySelector("#reportesTable").style.display = "block";
+  }
+  
+  function mostrarMaestro() {
+    document.querySelector(".alumno").style.display = "none";
+    document.querySelector(".maestro").style.display = "block";
+    document.querySelector(".cuadroparaclases").style.display = "none";
+    document.querySelector(".btnReportes").style.display = "block";
+    document.querySelector(".notas-table").style.display = "block";
+    document.querySelector("#reportesTable").style.display = "block";
+  }
+  
+  function mostrarClases() {
+    document.querySelector(".alumno").style.display = "none";
+    document.querySelector(".maestro").style.display = "none";
+    document.querySelector(".cuadroparaclases").style.display = "block";
+    document.querySelector(".btnReportes").style.display = "block";
+    document.querySelector(".notas-table").style.display = "block";
+    document.querySelector("#reportesTable").style.display = "block";
+  }
+
 form {
     max-width: 800px;
     margin: 0 auto;

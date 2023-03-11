@@ -285,7 +285,7 @@ function guardarNotas() {
     // Agregar fila de js a la tabla en el html
     const tabla = document.querySelector("table tbody");
     tabla.appendChild(fila);
-    
+
 }//fin guardar notas 
 
 
