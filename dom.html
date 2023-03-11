@@ -28,6 +28,8 @@
         <button type="button" onclick="guardarMaestro()">Guardar</button>
         <button type="button" onclick="buscarMaestro()">Buscar</button>
     <hr>
+    <button type="reset" class="limpiar" onclick="limpiarCampos()">Limpiar Campos</button>
+    <hr>
     <div id="cuadroClases" class="materias"></div>
     <button type="button" onclick="Buscar()">Buscar</button>
     <hr>
@@ -51,45 +53,45 @@
 
         <button type="button" onclick="generarReporteNotasPorMaestro()">Reporte 3 Nota por Maestro</button>
     <hr>
-
-        <table class="notas-table">
-            <caption>Todas las Notas Guardas</caption>
-        <thead>
-            <tr>
-            <th>Alumno</th>
-            <th>Maestro</th>
-            <th>Clase</th>
-            <th>Nota 1</th>
-            <th>Nota 2</th>
-            <th>Nota 3</th>
-            <th>Promedio</th>
-            <th>Observación</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- aquí se agregarán las filas dinámicamente con JavaScript -->
-        </tbody>
-        </table>
-        <hr>
-        <table id="reportesTable" class="reportes-table">
-            <caption>Reporte de Notas</caption>
-            <thead>
-                <tr>
-                <th>Alumno</th>
-                <th>Maestro</th>
-                <th>Clase</th>
-                <th>Nota 1</th>
-                <th>Nota 2</th>
-                <th>Nota 3</th>
-                <th>Promedio</th>
-                <th>Observación</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- aquí se agregarán las filas dinámicamente con JavaScript -->
-            </tbody>
-            </table>
+    <table class="notas-table">
+        <caption>Todas las Notas Guardas</caption>
+    <thead>
+        <tr>
+        <th>Alumno</th>
+        <th>Maestro</th>
+        <th>Clase</th>
+        <th>Nota 1</th>
+        <th>Nota 2</th>
+        <th>Nota 3</th>
+        <th>Promedio</th>
+        <th>Observación</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- aquí se agregarán las filas con JavaScript -->
+    </tbody>
+    </table>
+    <hr>
 </form>
+<br><br><br>
+<table id="reportesTable" class="reportes-table">
+    <caption>Reporte de Notas</caption>
+    <thead>
+        <tr>
+        <th>Alumno</th>
+        <th>Maestro</th>
+        <th>Clase</th>
+        <th>Nota 1</th>
+        <th>Nota 2</th>
+        <th>Nota 3</th>
+        <th>Promedio</th>
+        <th>Observación</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- aquí se agregarán las filas con JavaScript -->
+    </tbody>
+    </table>
 
     
     <script src="/tarea.js"></script>

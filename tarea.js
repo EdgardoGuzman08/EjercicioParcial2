@@ -1,5 +1,5 @@
 let datoNuevo = document.getElementById('datoNuevo');
-//ARREGLOS
+// los arreglos requeridos para el codigo
 let alumno=[{
     codigo:"1",
     nombre:"Pedro",
@@ -41,7 +41,7 @@ let notas=[
     }
 
 ]
-
+//fin de arreglos 
 let cClases=document.getElementById('cuadroClases');
 
 //Radio para materias
@@ -71,7 +71,7 @@ function Buscar(){
     }
 }
 
-//agregar clase
+//agregar clase a nuestras clases o arrelgo de materias
 function agregarClase() {
     let fldsmdfr = document.getElementById('clasenueva').value;
     if (clase.includes(fldsmdfr)) {
@@ -88,7 +88,10 @@ function agregarClase() {
     nuevoRadio.name="Clase";
     nuevoRadio.value=`${String(fldsmdfr)}`;
     cClases.append(nuevoRadio, nuevaEtiqueta);
+    document.getElementById("clasenueva").value = "";
 }
+//fin de las funciones de materias 
+
 /* 
 Comienzo de la tarea 
 Seminario de Software
@@ -123,19 +126,24 @@ function guardarAlumno() {
         alert('Alumno guardado correctamente');
         console.log(alumno);
     }
-}
+}//fin guardar alumno
+
 //Buscar Alumno
 function buscarAlumno() {
+    //busqueda realizada por el id
     let codigo = document.getElementById("codigoAlumno").value;
     for (let i = 0; i < alumno.length; i++) {
         if (alumno[i].codigo === codigo) {
+            //si existe hace la busqueda y pone en los input los datos
             document.getElementById("nombreAlumno").value = alumno[i].nombre;
             document.getElementById("apellidoAlumno").value = alumno[i].apellido;
             return;
         }
     }
+    //salta esta linea si el alumno no existe y le concatenamos el codigo que se envia
     alert("El alumno con codigo " + codigo + " no existe.");
-}
+    console.log(alumno);
+}//fin buscar alumno
 
 //guardar Maestro
 function guardarMaestro() {
@@ -165,29 +173,32 @@ function guardarMaestro() {
         alert('Maestro guardado correctamente');
         console.log(maestro);
     }
-}
+}//fin guardar maestro
+
 // buscar Maestro
 function buscarMaestro() {
+    //la busqueda se hace en base al id 
     let codigo = document.getElementById("codigoMaestro").value;
     for (let i = 0; i < maestro.length; i++) {
         if (maestro[i].codigo === codigo) {
-            // Maestro encontrado
+            // si existe pone los datos en el campo requerido
             document.getElementById("nombreMaestro").value = maestro[i].nombre;
             document.getElementById("apellidoMaestro").value = maestro[i].apellido;
             return;
         }
     }
-    // Maestro no encontrado
+    // si no existe salta este alert
     alert("El maestro con código " + codigo + " no existe.");
     console.log(maestro);
-}
+}// fin buscar maestro
 
 /* 
 Ejercicio #2 
 Guardar notas en el arreglo notas
 */
 
-//funcion que nos ayuda a calcular el promedio
+//funcion que nos ayuda a calcular el promedio y solo mandamos a llamarla
+// la observacion es en base a aprobado o reprobado
 function calcularPromedio(nota1, nota2, nota3) {
     const promedio = (nota1 + nota2 + nota3) / 3;
     let observacion = "Reprobado";
@@ -201,6 +212,8 @@ function calcularPromedio(nota1, nota2, nota3) {
 //guardar notas en el arreglo notas
 function guardarNotas() {
     // Recuperar datos del formulario
+    // es todo lo que le pedimos al usuario que debe llenar para guardar
+    // la nota sino saltaria un error
     const nombreAlumno = document.getElementById("nombreAlumno").value;
     const apellidoAlumno = document.getElementById("apellidoAlumno").value;
     const nombreMaestro = document.getElementById("nombreMaestro").value;
@@ -217,6 +230,8 @@ function guardarNotas() {
     const nota3 = parseFloat(document.getElementById("nota3").value);
 
     // Calcular promedio y observación
+    // hicimos una funcion de calcularPromedio para solo mandar a llamar 
+    //cuando se necesite 
     const { promedio, observacion } = calcularPromedio(nota1, nota2, nota3);
 
     // Agregar nota al arreglo de notas
@@ -231,7 +246,7 @@ function guardarNotas() {
         Observacion: observacion
     });
 
-    // Limpiar campos del formulario
+    // Limpiar campos del formulario que se requiren para guardar la nota
     document.getElementById("codigoAlumno").value = "";
     document.getElementById("codigoMaestro").value = "";
     document.getElementById("nombreAlumno").value = "";
@@ -247,10 +262,14 @@ function guardarNotas() {
     document.getElementById("nota1").value = "";
     document.getElementById("nota2").value = "";
     document.getElementById("nota3").value = "";
+
+    //mostramos todo en la consola
     console.log(notas);
-    // Construir fila de la tabla
-    //esta son filas que pertenecen a la tabla general donde se almacenan los datos
-    //tambien se puede ver desde la consola
+    
+    /* Aqui construimos desde el js las filas que nosotros queremos 
+    iterar con nuestro html en otras palabras nuestra tabla general de notas
+    tambien las podemos visualizar desde consola pero para una mejor
+    visualizacion movemos la informacion a una tabla en especifico */
     const fila = document.createElement("tr");
     fila.innerHTML = `
     <td>${nombreAlumno} ${apellidoAlumno}</td>
@@ -266,7 +285,8 @@ function guardarNotas() {
     // Agregar fila de js a la tabla en el html
     const tabla = document.querySelector("table tbody");
     tabla.appendChild(fila);
-}
+    
+}//fin guardar notas 
 
 
 /*
@@ -332,50 +352,28 @@ function generarReporteNotasPorClase() {
     
         tabla.appendChild(fila);
         }
+        // Desmarcar el radio a la hora de darle guardar
+        let Bradios = document.getElementsByName('Clase');
+        for(let i=0; i< Bradios.length; i++){
+            Bradios[i].checked = false;
+        }
 }
 
 //notas por alumno
-/*function generarReporteNotasPorAlumno() {
-    // Obtener el nombre completo del alumno ingresado
-    let nombreAlumno = document.getElementById('nombreAlumno').value + ' ' + document.getElementById('apellidoAlumno').value;
-
-    // Buscar todas las notas asociadas al nombre completo del alumno
-    let notasAlumno = notas.filter(notas => notas.alumno === nombreAlumno);
-
-    
-    // Si no hay notas para ese alumno, mostrar mensaje de error y salir de la función
-    if (notasAlumno.length === 0) {
-        alert('No se encontraron notas para ese alumno.');
-        return;
-    }
-    
-    // Generar informe con las notas para cada clase y el promedio
-    let informe = '';
-    for (let i = 0; i < notasAlumno.length; i++) {
-        informe += `Clase: ${notasAlumno[i].clase}\n`;
-        informe += `Nota 1: ${notasAlumno[i].Nota1}\n`;
-        informe += `Nota 2: ${notasAlumno[i].Nota2}\n`;
-        informe += `Promedio: ${notasAlumno[i].Promedio}\n\n`;
-    }
-    
-    // Mostrar informe en una ventana emergente
-    alert(informe);
-}*/
-
 function generarReporteNotasPorAlumno() {
-    // Obtener el nombre completo del alumno ingresado
+    // Obtener el nombre completo del alumno buscado 
     let nombreAlumno = document.getElementById('nombreAlumno').value + ' ' + document.getElementById('apellidoAlumno').value;
 
-    // Buscar todas las notas asociadas al nombre completo del alumno
+    // Buscar todas las notas con el nombre del alumno
     let notasAlumno = notas.filter(notas => notas.alumno === nombreAlumno);
 
-    // Si no hay notas para ese alumno, mostrar mensaje de error y salir de la función
+    // Si no hay notas para ese alumno, mostrar mensaje de error 
     if (notasAlumno.length === 0) {
         alert('No se encontraron notas para ese alumno.');
         return;
     }
 
-    // Obtener una referencia al elemento tbody de la tabla
+    // obtenemos donde queremos que esa informacion se muestre
     let tbody = document.getElementById('reportesTable').getElementsByTagName('tbody')[0];
 
     // Crear un string HTML para cada fila de la tabla y agregarlo al tbody
@@ -393,28 +391,30 @@ function generarReporteNotasPorAlumno() {
                     <td>${observacion}</td>
                 </tr>`;
     }
+    //limpiamos los campos del alumno
     document.getElementById("codigoAlumno").value = "";
     document.getElementById("nombreAlumno").value = "";
     document.getElementById("apellidoAlumno").value = "";
+    //integramos los resultados a nuestro html
     tbody.innerHTML = html;
 }
 
 
 //notas por maestro
 function generarReporteNotasPorMaestro() {
-    // Obtener el nombre completo del alumno ingresado
+    // Obtener el nombre completo del maestro buscado
     let nombreMaestro = document.getElementById('nombreMaestro').value + ' ' + document.getElementById('apellidoMaestro').value;
 
-    // Buscar todas las notas asociadas al nombre completo del alumno
+    // aqui buscamos las notas que el maestro ha hecho
     let notasMaestro = notas.filter(notas => notas.maestro === nombreMaestro);
 
-    // Si no hay notas para ese alumno, mostrar mensaje de error y salir de la función
+    // Si no hay notas de ese maestro sale el alert
     if (notasMaestro.length === 0) {
         alert('No se encontraron notas para ese alumno.');
         return;
     }
 
-    // Obtener una referencia al elemento tbody de la tabla
+    // obtenemos la tabla de referencia en nuestro html
     let tbody = document.getElementById('reportesTable').getElementsByTagName('tbody')[0];
 
     // Crear un string HTML para cada fila de la tabla y agregarlo al tbody
@@ -432,9 +432,20 @@ function generarReporteNotasPorMaestro() {
                     <td>${observacion}</td>
                 </tr>`;
     }
-    
+    //limpiamos los campos de maestros
     document.getElementById("codigoMaestro").value = "";
     document.getElementById("nombreMaestro").value = "";
     document.getElementById("apellidoMaestro").value = "";
+    //se integran los datos al html
     tbody.innerHTML = html;
+}
+
+//funcion usada para limpiar los campos
+function limpiarCampos(){
+    document.getElementById("codigoAlumno").value = "";
+    document.getElementById("codigoMaestro").value = "";
+    document.getElementById("nombreAlumno").value = "";
+    document.getElementById("nombreMaestro").value = "";
+    document.getElementById("apellidoAlumno").value = "";
+    document.getElementById("apellidoMaestro").value = "";
 }
