@@ -338,7 +338,7 @@ function generarReporteNotasPorClase() {
         let promedio = (registro.Nota1 + registro.Nota2 + registro.Nota3) / 3;
         celdaPromedio.textContent = promedio.toFixed(2);
     
-        let observacion = promedio >= 3 ? 'Aprobado' : 'Reprobado';
+        let observacion = promedio >= 70 ? 'Aprobado' : 'Reprobado';
         celdaObservacion.textContent = observacion;
     
         fila.appendChild(celdaAlumno);
